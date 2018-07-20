@@ -130,7 +130,13 @@ body请求示例
         "guid": "【设备唯一表示】，请看",
         "qua": "【设备QUA】",
         "user": {
-            "user_id": ""
+            "user_id": "",
+	     "account":{
+                "id":"{{STRING}}"
+                "appid":"{{STRING}}",
+                "type":"{{STRING}}",
+                "token":"{{STRING}}"
+            }
         },
         "lbs": {
             "longitude": 132.56481,
@@ -138,7 +144,8 @@ body请求示例
         },
         "ip": "8.8.8.8",
         "device": {
-            "network": "4G"
+            "network": "4G",
+	    "serial_num":"{{STRING}}"
         }
     },
     "payload": {
@@ -188,12 +195,19 @@ body请求示例
 | `header.qua`                              | `string` |  是   | 设备及应用信息，详细说明见[附录-QUA字段说明](#QUA字段说明)         |
 | `header.user`                             |    -     |  否   | 用户信息                                     |
 | `header.user.user_id`                     | `string` |  -   | 用户ID，，详细说明见[附录-USERID](#USERID)         |
+| `header.user.account`                     | `object` |  否   | 用户账户信息         |
+| `header.user.account.id`                     | `string` | 否   | 用户账户ID         |
+| `header.user.account.appid`                     | `string` |  否   | 用户账户app id         |
+| `header.user.account.type`                     | `string` |  否   | 用户账户类型，接受WX,QQOPEN      |
+| `header.user.account.token`                     | `string` |  否   | 用户账户accessToken      |
 | `header.lbs`                              |    -     |  否   | 用户位置信息                                   |
 | `header.lbs.longitude`                    | `double` |  -   | 经度                                       |
 | `header.lbs.latitude`                     | `double` |  -   | 纬度                                       |
 | `header.ip`                               | `string` |  是   | 终端IP                                     |
 | `header.device`                           |    -     |  否   |                                          |
+
 | `header.device.network`                   | `string` |  否   | 网络类型：`4G`/`3G`/`2G`/`Wi-Fi`              |
+| `header.device.serial_num`                   | `string` |  否   | 设备序列号         |
 | `payload`                                 |    -     |  是   | 请求内容                                     |
 | `payload.query`                           | `string` |  是   | 用户query                                  |
 | `payload.request_type`                    | `string` |  否   | 请求类型：<br>`SEMANTIC_SERVICE`：默认，返回语义、服务结果；<br>`SEMANTIC_ONLY`：只需要语义结果<br>`SERVICE_ONLY`：只需要服务结果，需带上`session_id`； | 
